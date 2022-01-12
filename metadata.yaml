@@ -15,5 +15,5 @@
 homepage: "https://www.utmsimple.com"
 documentation: "https://docs.utmsimple.com"
 versions:
-  - sha: 94938c66dfab1bfc729768aa55592b8a76f377d6
+  - sha: 9646109a299a1b6aad2674088fdf810fc964492c
     changeNotes: Initial release.
