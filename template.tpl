@@ -13,7 +13,7 @@ ___INFO___
   "id": "cvt_temp_public_id",
   "version": 1,
   "securityGroups": [],
-  "displayName": "UTM Simple",
+  "displayName": "UTM Simple v1",
   "categories": ["AFFILIATE_MARKETING", "ADVERTISING", "ANALYTICS", "LEAD_GENERATION", "MARKETING", "REMARKETING", "SALES", "TAG_MANAGEMENT"],
   "brand": {
     "id": "brand_dummy",
@@ -70,28 +70,22 @@ log('data =', data);
 
 
 const licenseKey = data.licenseKey;
+// customParams is an optional global variable for our plugin. If it is defined, it will be used.
 const customParams = data.customParams;
 
 const dataLayerPush = createQueue('dataLayer');
 
-injectScript('https://track.utmsimple.com/utm.js?license='+licenseKey, handlSuccess, data.gtmOnFailure);
+injectScript('https://track.utmsimple.com/utm.js?license='+encodeUriComponent(licenseKey), handlSuccess, data.gtmOnFailure);
 
 addEventCallback(function(ctid, eventData) {
   log('Tag count for container ' + ctid + ': ' + eventData.tags.length);
 });
 
-// Call data.gtmOnSuccess when the tag is finished.
-//data.gtmOnSuccess();
-
 function handlSuccess(){
-  log("Script has been inserted successfully8");
   const handl = copyFromWindow('HandL') || [];
   let handlparams = handl.getAll();
   dataLayerPush(handlparams);
-
-  //dataLayerPush(HandL.getAll());
-  //data.customScripts();
-  //data.gtmOnSuccess();
+  data.gtmOnSuccess();
 }
 
 
