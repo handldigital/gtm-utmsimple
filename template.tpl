@@ -60,6 +60,7 @@ ___TEMPLATE_PARAMETERS___
 
 ___SANDBOXED_JS_FOR_WEB_TEMPLATE___
 
+const encodeUriComponent = require('encodeUriComponent');
 const injectScript = require('injectScript');
 const addEventCallback = require('addEventCallback');
 const copyFromWindow = require('copyFromWindow');
@@ -68,7 +69,6 @@ const createQueue = require('createQueue');
 const log = require('logToConsole');
 log('data =', data);
 
-
 const licenseKey = data.licenseKey;
 // customParams is an optional global variable for our plugin. If it is defined, it will be used.
 const customParams = data.customParams;
@@ -76,10 +76,6 @@ const customParams = data.customParams;
 const dataLayerPush = createQueue('dataLayer');
 
 injectScript('https://track.utmsimple.com/utm.js?license='+encodeUriComponent(licenseKey), handlSuccess, data.gtmOnFailure);
-
-addEventCallback(function(ctid, eventData) {
-  log('Tag count for container ' + ctid + ': ' + eventData.tags.length);
-});
 
 function handlSuccess(){
   const handl = copyFromWindow('HandL') || [];
