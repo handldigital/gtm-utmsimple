@@ -13,7 +13,7 @@ ___INFO___
   "id": "cvt_temp_public_id",
   "version": 1,
   "securityGroups": [],
-  "displayName": "UTM Simple v1",
+  "displayName": "UTM Simple v3",
   "categories": ["AFFILIATE_MARKETING", "ADVERTISING", "ANALYTICS", "LEAD_GENERATION", "MARKETING", "REMARKETING", "SALES", "TAG_MANAGEMENT"],
   "brand": {
     "id": "brand_dummy",
@@ -62,16 +62,18 @@ ___SANDBOXED_JS_FOR_WEB_TEMPLATE___
 
 const encodeUriComponent = require('encodeUriComponent');
 const injectScript = require('injectScript');
-const addEventCallback = require('addEventCallback');
 const copyFromWindow = require('copyFromWindow');
 const createArgumentsQueue = require('createArgumentsQueue');
 const createQueue = require('createQueue');
+const setInWindow = require('setInWindow');
+
 const log = require('logToConsole');
-log('data =', data);
 
 const licenseKey = data.licenseKey;
 // customParams is an optional global variable for our plugin. If it is defined, it will be used.
 const customParams = data.customParams;
+const customParamsArr = customParams.map((x)=>x.param);
+setInWindow('handl_custom_params', customParamsArr, true);
 
 const dataLayerPush = createQueue('dataLayer');
 
@@ -81,6 +83,9 @@ function handlSuccess(){
   const handl = copyFromWindow('HandL') || [];
   let handlparams = handl.getAll();
   dataLayerPush(handlparams);
+  dataLayerPush({
+     event: 'UTMSimpleLoaded',
+  });
   data.gtmOnSuccess();
 }
 
@@ -234,7 +239,46 @@ ___WEB_PERMISSIONS___
                     "boolean": true
                   }
                 ]
-              }
+              },
+              {
+                  "type": 3,
+                  "mapKey": [
+                    {
+                      "type": 1,
+                      "string": "key"
+                    },
+                    {
+                      "type": 1,
+                      "string": "read"
+                    },
+                    {
+                      "type": 1,
+                      "string": "write"
+                    },
+                    {
+                      "type": 1,
+                      "string": "execute"
+                    }
+                  ],
+                  "mapValue": [
+                    {
+                      "type": 1,
+                      "string": "handl_custom_params"
+                    },
+                    {
+                      "type": 8,
+                      "boolean": true
+                    },
+                    {
+                      "type": 8,
+                      "boolean": true
+                    },
+                    {
+                      "type": 8,
+                      "boolean": true
+                    }
+                  ]
+                }
             ]
           }
         }
