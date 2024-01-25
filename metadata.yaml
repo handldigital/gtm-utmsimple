@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-homepage: "https://www.utmsimple.com"
+homepage: "https://utmsimple.com"
 documentation: "https://docs.utmsimple.com"
 versions:
   - sha: f41c48d20a2d293027f9882ff87b57240f04d572
