@@ -13,7 +13,7 @@ ___INFO___
   "id": "cvt_temp_public_id",
   "version": 1,
   "securityGroups": [],
-  "displayName": "UTM Simple v3",
+  "displayName": "UTM Simple v1",
   "categories": ["AFFILIATE_MARKETING", "ADVERTISING", "ANALYTICS", "LEAD_GENERATION", "MARKETING", "REMARKETING", "SALES", "TAG_MANAGEMENT"],
   "brand": {
     "id": "brand_dummy",
