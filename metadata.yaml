@@ -15,6 +15,8 @@
 homepage: "https://utmsimple.com"
 documentation: "https://docs.utmsimple.com"
 versions:
+  - sha: 49e1eceab0b64799fe411c81805ff4ec714d34d4
+    changeNotes: Changing the display name
   - sha: f41c48d20a2d293027f9882ff87b57240f04d572
     changeNotes: Added Custom Param Support
   - sha: 1be3fab9df809b393528d779699e64f3713a53f3
